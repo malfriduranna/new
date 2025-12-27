@@ -19,12 +19,13 @@ base:
     image_size: 224
     num_classes: 4
     patch_size: 16
-    enabled: false
+    enabled: true
   schedule:
     epochs: 80
     batch_size: 4
     lr: 0.001
     weight_decay: 0.05
+    num_workers: 4
 subsets:
   - percentage: 10
     manifest_path: data/manifests/train_10.csv
