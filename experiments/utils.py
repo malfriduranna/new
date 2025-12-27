@@ -1,4 +1,5 @@
 import json
+import os
 import random
 from pathlib import Path
 from typing import Any, Dict
@@ -83,7 +84,8 @@ def _schedule(data: Dict[str, Any]) -> TrainingSchedule:
 def load_experiment_config(config_path: Path) -> ExperimentSetConfig:
     data = yaml.safe_load(config_path.read_text())
     base = data["base"]
-    output_root = Path(base["output_root"])
+    output_root_env = os.environ.get("ACTION_EXP_OUTPUT_ROOT")
+    output_root = Path(output_root_env) if output_root_env else Path(base["output_root"])
     exp_config = ExperimentConfig(
         dataset=_dataset_paths(base["dataset"]),
         hd_gcn=_hdgcn_config(base["hd_gcn"]),
