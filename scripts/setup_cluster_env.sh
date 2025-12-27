@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-VENV="${REPO_ROOT}/.venv"
+VENV="${VENV_PATH:-${REPO_ROOT}/.venv}"
 SENTINEL="${VENV}/.deps_installed"
 
 echo "[setup] repo: ${REPO_ROOT}"
@@ -16,10 +16,10 @@ fi
 source "${VENV}/bin/activate"
 
 echo "[setup] upgrading pip"
-pip install --upgrade pip
+pip install ${PIP_UPGRADE_OPTS:---no-cache-dir} --upgrade pip
 
 echo "[setup] installing requirements"
-pip install -r "${REPO_ROOT}/requirements.txt"
+pip install ${PIP_INSTALL_OPTS:---no-cache-dir} -r "${REPO_ROOT}/requirements.txt"
 
 python - <<'PY'
 import importlib, pkgutil

@@ -17,7 +17,7 @@ unset PYTHONHOME || true
 unset PYTHONPATH || true
 
 REPO="$HOME/new"
-VENV="$REPO/.venv"
+VENV="${VENV_PATH:-$REPO/.venv}"
 CONFIG="$REPO/configs/experiments.yaml"
 PY="$VENV/bin/python"
 PIP="$VENV/bin/pip"
