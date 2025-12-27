@@ -86,6 +86,25 @@ A copy of `OZ_Football_COCO.npz` lives in `data/skeletons/`. To explode it into 
 
 The generated manifests already match the defaults in `configs/experiments.yaml`, so you can run the experiments immediately. The placeholder video is the same for every row; VideoMAE metrics will therefore be meaningless until you swap in actual RGB clips, but the HD-GCN skeleton branch trains as expected.
 
+## Running on an LSF Cluster
+
+1. Copy this repo to your cluster home (e.g., `/zhome/.../new`) and place the OZ-Football assets under `data/` as described above.
+2. On a login node, bootstrap the virtualenv once:
+
+   ```bash
+   chmod +x scripts/setup_cluster_env.sh
+   ./scripts/setup_cluster_env.sh
+   ```
+
+   This installs `requirements.txt` into `.venv/` and drops a sentinel file so batch jobs skip the heavy install step.
+3. Submit the bundled job script (requests one GPU on `gpul40s` by default—tweak `#BSUB -q` to use another queue from `bqueues` if needed):
+
+   ```bash
+   bsub < jobs/run_all_experiments.bsub
+   ```
+
+   Runtime output streams to both `logs/%J.out` (LSF) and `logs/%J_run.log` (tee’d stream created at launch). Monitor progress with `tail -f logs/<jobid>_run.log`.
+
 ## License
 
 MIT

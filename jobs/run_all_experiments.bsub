@@ -42,12 +42,8 @@ fi
 echo "[env] activating venv"
 source "$VENV/bin/activate"
 if [ ! -f "$DEPS_SENTINEL" ]; then
-  echo "[env] installing deps"
-  $PIP install --upgrade pip
-  $PIP install -r requirements.txt
-  touch "$DEPS_SENTINEL"
-else
-  echo "[env] deps already installed, skipping pip install"
+  echo "[env] ERROR: dependencies not installed. Run scripts/setup_cluster_env.sh on a login node first."
+  exit 1
 fi
 
 echo "[run] Exp 1 - modality comparison"
