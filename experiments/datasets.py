@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, List, Optional, Sequence, Tuple
+import warnings
 
 import numpy as np
 import pandas as pd
@@ -94,7 +95,15 @@ class RGBDataset(Dataset[Tuple[torch.Tensor, int]]):
 
     def __getitem__(self, idx: int) -> Tuple[torch.Tensor, int]:
         entry = self.entries[idx]
-        video, _, _ = torchvision.io.read_video(str(entry.video_path), pts_unit="sec")
+        blank_clip = torch.zeros((self.num_frames, self.resize_to, self.resize_to, 3), dtype=torch.uint8)
+        try:
+            video, _, _ = torchvision.io.read_video(str(entry.video_path), pts_unit="sec")
+        except Exception as exc:
+            warnings.warn(f"Failed to decode video {entry.video_path}: {exc}. Using blank clip instead.")
+            video = blank_clip
+        if video.shape[0] == 0:
+            warnings.warn(f"Video {entry.video_path} produced 0 frames; substituting blank clip.")
+            video = blank_clip
         # video: T x H x W x C
         video = video.permute(0, 3, 1, 2)  # T, C, H, W
         video = self._temporal_sample(video)
