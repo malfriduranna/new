@@ -7,6 +7,14 @@ import numpy as np
 import torch
 import yaml
 
+import warnings
+
+warnings.filterwarnings(
+    "ignore",
+    message="The video decoding and encoding capabilities of torchvision are deprecated",
+    category=UserWarning,
+)
+
 from .config import (
     DatasetPaths,
     ExperimentConfig,
