@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from typing import Dict, List, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 import torch
 from torch import nn
@@ -24,7 +24,7 @@ def train_models_for_subset(
     config,
     device: torch.device,
     suffix: str,
-) -> Tuple[float, float]:
+) -> Tuple[float, Optional[float]]:
     loaders = build_loaders(
         subset_entries,
         val_entries,
@@ -67,6 +67,8 @@ def train_models_for_subset(
     _, hd_metrics = evaluate(hd_model.to(device), test_skel, hd_loss, device)
 
     # VideoMAE
+    if not config.videomae.enabled:
+        return hd_metrics.accuracy, None
     vid_model = build_videomae(
         model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
         num_classes=config.videomae.num_classes,
@@ -112,20 +114,27 @@ def main(config_path: Path) -> None:
         subset_entries = _load_entries(subset.manifest_path, config.dataset.video_root, config.dataset.skeleton_root)
         hd_acc, vid_acc = train_models_for_subset(subset_entries, val_entries, test_entries, config, device, suffix=str(subset.percentage))
         hd_points.append((subset.percentage, hd_acc))
-        vid_points.append((subset.percentage, vid_acc))
-        metrics_payload[str(subset.percentage)] = {"hd_gcn_accuracy": hd_acc, "videomae_accuracy": vid_acc}
+        entry = {"hd_gcn_accuracy": hd_acc}
+        if vid_acc is not None:
+            vid_points.append((subset.percentage, vid_acc))
+            entry["videomae_accuracy"] = vid_acc
+        metrics_payload[str(subset.percentage)] = entry
 
     # Full dataset training
     hd_acc, vid_acc = train_models_for_subset(full_train_entries, val_entries, test_entries, config, device, suffix="full")
     hd_points.append((100, hd_acc))
-    vid_points.append((100, vid_acc))
-    metrics_payload["100"] = {"hd_gcn_accuracy": hd_acc, "videomae_accuracy": vid_acc}
+    entry = {"hd_gcn_accuracy": hd_acc}
+    if vid_acc is not None:
+        vid_points.append((100, vid_acc))
+        entry["videomae_accuracy"] = vid_acc
+    metrics_payload["100"] = entry
 
     metrics_path = config.output.logs_dir / "exp2_data_efficiency.json"
     save_metrics_json(metrics_payload, metrics_path)
 
     plot_learning_curve(hd_points, title="HD-GCN Data Efficiency", output_path=config.output.plots_dir / "exp2_hdgcn.png")
-    plot_learning_curve(vid_points, title="VideoMAE Data Efficiency", output_path=config.output.plots_dir / "exp2_videomae.png")
+    if vid_points:
+        plot_learning_curve(vid_points, title="VideoMAE Data Efficiency", output_path=config.output.plots_dir / "exp2_videomae.png")
 
     print(f"Exp 2 complete. Metrics saved to {metrics_path}")
 

@@ -44,43 +44,50 @@ def main(config_path: Path) -> None:
         dropout=config.hd_gcn.dropout,
         checkpoint=hd_ckpt if hd_ckpt.exists() else config.hd_gcn.checkpoint.init_weights,
     )
-    vid_model = build_videomae(
-        model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
-        num_classes=config.videomae.num_classes,
-        checkpoint=vid_ckpt if vid_ckpt.exists() else config.videomae.checkpoint.init_weights,
-    )
+    vid_model = None
+    if config.videomae.enabled:
+        vid_model = build_videomae(
+            model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
+            num_classes=config.videomae.num_classes,
+            checkpoint=vid_ckpt if vid_ckpt.exists() else config.videomae.checkpoint.init_weights,
+        )
 
     skel_preds, skel_labels, skel_logits = inference(hd_model.to(device), test_skel, device)
-    rgb_preds, rgb_labels, rgb_logits = inference(vid_model.to(device), test_rgb, device)
+    rgb_preds = rgb_labels = rgb_logits = None
+    if vid_model is not None:
+        rgb_preds, rgb_labels, rgb_logits = inference(vid_model.to(device), test_rgb, device)
 
-    if skel_labels != rgb_labels:
+    if rgb_labels is not None and skel_labels != rgb_labels:
         raise ValueError("Skeleton and RGB test loaders are not aligned; ensure manifests share ordering")
 
     skel_prob = torch.cat(skel_logits, dim=0)
-    rgb_prob = torch.cat(rgb_logits, dim=0)
     labels_tensor = torch.tensor(skel_labels)
 
     fusion_results = {}
     best_acc = -1.0
     best_alpha = 0.0
-    for alpha in exp_set.fusion.alphas:
-        fused = alpha * rgb_prob + (1 - alpha) * skel_prob
-        preds = torch.argmax(fused, dim=1)
-        metrics = classification_metrics(preds.tolist(), labels_tensor.tolist())
-        fusion_results[str(alpha)] = {"accuracy": metrics.accuracy, "macro_f1": metrics.macro_f1}
-        if metrics.accuracy > best_acc:
-            best_acc = metrics.accuracy
-            best_alpha = alpha
+    if rgb_logits is not None:
+        rgb_prob = torch.cat(rgb_logits, dim=0)
+        for alpha in exp_set.fusion.alphas:
+            fused = alpha * rgb_prob + (1 - alpha) * skel_prob
+            preds = torch.argmax(fused, dim=1)
+            metrics = classification_metrics(preds.tolist(), labels_tensor.tolist())
+            fusion_results[str(alpha)] = {"accuracy": metrics.accuracy, "macro_f1": metrics.macro_f1}
+            if metrics.accuracy > best_acc:
+                best_acc = metrics.accuracy
+                best_alpha = alpha
 
     results_path = config.output.logs_dir / "exp5_fusion.json"
+    single_modalities = {"hd_gcn": classification_metrics(skel_preds, skel_labels).__dict__}
+    if rgb_preds is not None:
+        single_modalities["videomae"] = classification_metrics(rgb_preds, rgb_labels).__dict__
+    else:
+        fusion_results = None
     save_metrics_json(
         {
             "fusion": fusion_results,
-            "best": {"alpha": best_alpha, "accuracy": best_acc},
-            "single_modalities": {
-                "hd_gcn": classification_metrics(skel_preds, skel_labels).__dict__,
-                "videomae": classification_metrics(rgb_preds, rgb_labels).__dict__,
-            },
+            "best": {"alpha": best_alpha, "accuracy": best_acc} if fusion_results else None,
+            "single_modalities": single_modalities,
         },
         results_path,
     )

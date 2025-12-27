@@ -105,30 +105,30 @@ def main(config_path: Path) -> None:
 
     # Save metrics
     metrics_path = config.output.logs_dir / "exp1_metrics.json"
-    save_metrics_json(
-        {
-            "hd_gcn": {
-                "accuracy": hd_metrics.accuracy,
-                "macro_f1": hd_metrics.macro_f1,
-                "checkpoint": str(hd_ckpt),
-            },
-            "videomae": {
-                "accuracy": vid_metrics.accuracy,
-                "macro_f1": vid_metrics.macro_f1,
-                "checkpoint": str(vid_ckpt),
-            },
-        },
-        metrics_path,
-    )
+    metrics_payload = {
+        "hd_gcn": {
+            "accuracy": hd_metrics.accuracy,
+            "macro_f1": hd_metrics.macro_f1,
+            "checkpoint": str(hd_ckpt),
+        }
+    }
+    if vid_metrics is not None:
+        metrics_payload["videomae"] = {
+            "accuracy": vid_metrics.accuracy,
+            "macro_f1": vid_metrics.macro_f1,
+            "checkpoint": str(vid_ckpt),
+        }
+    save_metrics_json(metrics_payload, metrics_path)
 
     # Confusion matrices
     # Not storing class names in config, so use indices
     class_names = [f"class_{i}" for i in range(config.hd_gcn.num_classes)]
 
     hd_confusion_plot = config.output.plots_dir / "exp1_hd_gcn_confusion.png"
-    vid_confusion_plot = config.output.plots_dir / "exp1_videomae_confusion.png"
     plot_confusion(class_names=class_names, confusion=hd_metrics.confusion, title="HD-GCN Confusion", output_path=hd_confusion_plot)
-    plot_confusion(class_names=class_names, confusion=vid_metrics.confusion, title="VideoMAE Confusion", output_path=vid_confusion_plot)
+    if vid_metrics is not None:
+        vid_confusion_plot = config.output.plots_dir / "exp1_videomae_confusion.png"
+        plot_confusion(class_names=class_names, confusion=vid_metrics.confusion, title="VideoMAE Confusion", output_path=vid_confusion_plot)
 
     print(f"Exp 1 complete. Metrics saved to {metrics_path}")
 

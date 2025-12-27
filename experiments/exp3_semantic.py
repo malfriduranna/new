@@ -56,44 +56,47 @@ def main(config_path: Path) -> None:
         dropout=config.hd_gcn.dropout,
         checkpoint=hd_ckpt if hd_ckpt.exists() else config.hd_gcn.checkpoint.init_weights,
     )
-    vid_model = build_videomae(
-        model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
-        num_classes=config.videomae.num_classes,
-        checkpoint=vid_ckpt if vid_ckpt.exists() else config.videomae.checkpoint.init_weights,
-    )
+    vid_model = None
+    if config.videomae.enabled:
+        vid_model = build_videomae(
+            model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
+            num_classes=config.videomae.num_classes,
+            checkpoint=vid_ckpt if vid_ckpt.exists() else config.videomae.checkpoint.init_weights,
+        )
 
     hd_preds, hd_labels, _ = inference(hd_model.to(device), test_skel, device)
-    vid_preds, vid_labels, _ = inference(vid_model.to(device), test_rgb, device)
-
     class_names = load_class_names(config)
-
     hd_metrics = classification_metrics(hd_preds, hd_labels)
-    vid_metrics = classification_metrics(vid_preds, vid_labels)
-
     hd_ball = aggregate_subset_metrics(hd_preds, hd_labels, class_names, exp_set.semantic_groups.ball_interaction)
     hd_body = aggregate_subset_metrics(hd_preds, hd_labels, class_names, exp_set.semantic_groups.body_motion)
-    vid_ball = aggregate_subset_metrics(vid_preds, vid_labels, class_names, exp_set.semantic_groups.ball_interaction)
-    vid_body = aggregate_subset_metrics(vid_preds, vid_labels, class_names, exp_set.semantic_groups.body_motion)
+
+    vid_metrics = None
+    vid_ball = vid_body = None
+    if vid_model is not None:
+        vid_preds, vid_labels, _ = inference(vid_model.to(device), test_rgb, device)
+        vid_metrics = classification_metrics(vid_preds, vid_labels)
+        vid_ball = aggregate_subset_metrics(vid_preds, vid_labels, class_names, exp_set.semantic_groups.ball_interaction)
+        vid_body = aggregate_subset_metrics(vid_preds, vid_labels, class_names, exp_set.semantic_groups.body_motion)
 
     results_path = config.output.logs_dir / "exp3_semantic.json"
-    save_metrics_json(
-        {
-            "hd_gcn": {
-                "overall": hd_metrics.__dict__,
-                "ball_interaction": hd_ball,
-                "body_motion": hd_body,
-            },
-            "videomae": {
-                "overall": vid_metrics.__dict__,
-                "ball_interaction": vid_ball,
-                "body_motion": vid_body,
-            },
-        },
-        results_path,
-    )
+    payload = {
+        "hd_gcn": {
+            "overall": hd_metrics.__dict__,
+            "ball_interaction": hd_ball,
+            "body_motion": hd_body,
+        }
+    }
+    if vid_metrics is not None and vid_ball is not None and vid_body is not None:
+        payload["videomae"] = {
+            "overall": vid_metrics.__dict__,
+            "ball_interaction": vid_ball,
+            "body_motion": vid_body,
+        }
+    save_metrics_json(payload, results_path)
 
     plot_confusion(hd_metrics.confusion, class_names, "HD-GCN Semantic Confusion", config.output.plots_dir / "exp3_hd_confusion.png")
-    plot_confusion(vid_metrics.confusion, class_names, "VideoMAE Semantic Confusion", config.output.plots_dir / "exp3_videomae_confusion.png")
+    if vid_metrics is not None:
+        plot_confusion(vid_metrics.confusion, class_names, "VideoMAE Semantic Confusion", config.output.plots_dir / "exp3_videomae_confusion.png")
 
     print(f"Exp 3 complete. Metrics saved to {results_path}")
 
