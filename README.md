@@ -105,6 +105,27 @@ The generated manifests already match the defaults in `configs/experiments.yaml`
 
    Runtime output streams to both `logs/%J.out` (LSF) and `logs/%J_run.log` (tee’d stream created at launch). Monitor progress with `tail -f logs/<jobid>_run.log`.
 
+## SoccerNet RGB Pipeline (VideoMAE)
+
+The repository now includes utilities to curate SoccerNet RGB clips and fine-tune VideoMAE:
+
+1. **Curate clips** (2-second windows centered on annotated events; defaults to Pass, Shot, Ball Touch, and Foul):
+
+   ```bash
+   python scripts/curate_soccernet_rgb.py \
+     --labels-json /path/to/Labels-v2.json \
+     --videos-root /path/to/soccernet/videos \
+     --output-root dataset
+   ```
+
+2. **Train VideoMAE** on the curated dataset (expects `train/`, `valid/`, and `test/` splits under `--dataset-root`):
+
+   ```bash
+   python scripts/train_videomae_rgb.py \
+     --dataset-root dataset \
+     --output-dir outputs/videomae_rgb
+   ```
+
 ## License
 
 MIT
