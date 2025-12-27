@@ -21,8 +21,12 @@ VENV="$REPO/.venv"
 CONFIG="$REPO/configs/experiments.yaml"
 PY="$VENV/bin/python"
 PIP="$VENV/bin/pip"
-
 mkdir -p "$REPO/logs"
+LOG_ID=${LSB_JOBID:-manual}
+RUN_LOG="$REPO/logs/${LOG_ID}_run.log"
+touch "$RUN_LOG"
+exec > >(tee -a "$RUN_LOG") 2>&1
+
 cd "$REPO"
 
 echo "=== START $(date) on $(hostname) ==="
