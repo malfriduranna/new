@@ -21,6 +21,15 @@ pip install --upgrade pip
 echo "[setup] installing requirements"
 pip install -r "${REPO_ROOT}/requirements.txt"
 
+python - <<'PY'
+import importlib, pkgutil
+import numpy
+import sys
+if pkgutil.find_loader("numpy._utils") is None:
+    raise SystemExit("numpy installation incomplete (missing numpy._utils)")
+print(f"[setup] verified numpy {numpy.__version__}")
+PY
+
 touch "${SENTINEL}"
 
 echo "[setup] done. Activate with: source ${VENV}/bin/activate"
