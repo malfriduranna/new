@@ -86,7 +86,7 @@ def train_models_for_subset(
         best_name=f"videomae_subset_{suffix}.pt",
     )
     vid_model = build_videomae(
-        model_name_or_path=str(config.videomae.checkpoint.init_weights or vid_best),
+        model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
         num_classes=config.videomae.num_classes,
         checkpoint=vid_best,
     )

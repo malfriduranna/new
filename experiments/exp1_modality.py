@@ -84,7 +84,7 @@ def run_videomae(config: ExperimentConfig, device: torch.device, loaders):
         best_name="videomae_best.pt",
     )
     model = build_videomae(
-        model_name_or_path=str(config.videomae.checkpoint.init_weights or best_path),
+        model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
         num_classes=config.videomae.num_classes,
         checkpoint=best_path,
     )
