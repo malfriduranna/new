@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 import torch
 from torch import nn
@@ -24,7 +25,7 @@ class VideoMAEClassifier(nn.Module):
         return outputs.logits
 
 
-def build_videomae(model_name_or_path: str, num_classes: int, checkpoint: Path | None = None) -> VideoMAEClassifier:
+def build_videomae(model_name_or_path: str, num_classes: int, checkpoint: Optional[Path] = None) -> VideoMAEClassifier:
     model = VideoMAEClassifier(model_name_or_path=model_name_or_path, num_classes=num_classes)
     if checkpoint is not None and checkpoint.exists():
         state = torch.load(checkpoint, map_location="cpu")

@@ -1,0 +1,57 @@
+#!/bin/bash
+#BSUB -J action-exp
+#BSUB -q gpul40s
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -W 08:00
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=8GB]"
+#BSUB -M 8GB
+#BSUB -o logs/%J.out
+#BSUB -e logs/%J.err
+
+set -euo pipefail
+
+module purge
+unset PYTHONHOME || true
+unset PYTHONPATH || true
+
+REPO="$HOME/new"
+VENV="$REPO/.venv"
+CONFIG="$REPO/configs/experiments.yaml"
+PY="$VENV/bin/python"
+PIP="$VENV/bin/pip"
+
+mkdir -p "$REPO/logs"
+cd "$REPO"
+
+echo "=== START $(date) on $(hostname) ==="
+echo "[env] repo: $(pwd)"
+echo "[env] venv: $VENV"
+
+if [ ! -x "$PY" ]; then
+  echo "[env] creating venv"
+  python3 -m venv "$VENV"
+fi
+
+echo "[env] activating venv and installing deps"
+source "$VENV/bin/activate"
+$PIP install --upgrade pip
+$PIP install -r requirements.txt
+
+echo "[run] Exp 1 - modality comparison"
+$PY -m experiments.exp1_modality --config "$CONFIG"
+
+echo "[run] Exp 2 - data efficiency"
+$PY -m experiments.exp2_efficiency --config "$CONFIG"
+
+echo "[run] Exp 3 - semantic grouping"
+$PY -m experiments.exp3_semantic --config "$CONFIG"
+
+echo "[run] Exp 4 - robustness"
+$PY -m experiments.exp4_robustness --config "$CONFIG"
+
+echo "[run] Exp 5 - late fusion"
+$PY -m experiments.exp5_fusion --config "$CONFIG"
+
+echo "=== END $(date) ==="

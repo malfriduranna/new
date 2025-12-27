@@ -59,6 +59,33 @@ This repository provides runnable scripts to reproduce the experiments described
 - VideoMAE uses Hugging Face weights (`MCG-NJU/videomae-base` by default). Point `videomae.checkpoint.init_weights` to a local fine-tuned checkpoint to avoid network downloads.
 - Outputs (checkpoints, logs, plots) are written under the `output_root` defined in the config.
 
+## Sample OZ-Football COCO Skeletons
+
+A copy of `OZ_Football_COCO.npz` lives in `data/skeletons/`. To explode it into per-clip skeleton tensors and CSV manifests that match the default config:
+
+1. (Optional) Drop a fresh `OZ_Football_COCO.npz` into `data/skeletons/`.
+2. Run the prep script to materialize `data/skeletons/oz_football/*.npy`, write `data/manifests/{train,val,test}.csv`, create subset manifests, and update `configs/label_names.txt`:
+
+   ```bash
+   python scripts/prepare_oz_football.py
+   ```
+
+3. Create a placeholder RGB clip so the VideoMAE dataloader has something to read (replace it with real clips when available):
+
+   ```bash
+   python - <<'PY'
+   import torch
+   from torchvision.io import write_video
+   import pathlib
+   path = pathlib.Path('data/videos/dummy.mp4')
+   if not path.exists():
+       frames = torch.zeros((16, 64, 64, 3), dtype=torch.uint8)
+       write_video(str(path), frames, fps=8)
+   PY
+   ```
+
+The generated manifests already match the defaults in `configs/experiments.yaml`, so you can run the experiments immediately. The placeholder video is the same for every row; VideoMAE metrics will therefore be meaningless until you swap in actual RGB clips, but the HD-GCN skeleton branch trains as expected.
+
 ## License
 
 MIT

@@ -10,14 +10,14 @@ base:
     skeleton_root: data/skeletons
   hd_gcn:
     num_joints: 17
-    num_classes: 12
-    sequence_length: 48
+    num_classes: 4
+    sequence_length: 64
     hidden_dim: 256
     dropout: 0.2
   videomae:
     num_frames: 16
     image_size: 224
-    num_classes: 12
+    num_classes: 4
     patch_size: 16
   schedule:
     epochs: 80
@@ -35,16 +35,11 @@ fusion:
   alphas: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 semantic_groups:
   ball_interaction:
+    - kick
     - pass
-    - shot
-    - dribble
-    - volley
   body_motion:
-    - run
-    - jump
-    - tackle
-    - celebrate
-    - fall
+    - throw_in
+    - header
 robustness_noise:
   sigmas: [0.0, 0.01, 0.05, 0.1]
 robustness_resolution:

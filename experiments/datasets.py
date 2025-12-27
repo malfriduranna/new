@@ -35,6 +35,12 @@ class SkeletonDataset(Dataset[Tuple[torch.Tensor, int]]):
     def __getitem__(self, idx: int) -> Tuple[torch.Tensor, int]:
         entry = self.entries[idx]
         skeleton = np.load(entry.skeleton_path)
+        if skeleton.ndim == 4:
+            skeleton = np.squeeze(skeleton, axis=-1)
+        if skeleton.ndim != 3:
+            raise ValueError(f"Expected skeleton tensor with 3 dimensions (T, joints, coords); got shape {skeleton.shape}")
+        if skeleton.shape[-1] > 2:
+            skeleton = skeleton[..., :2]
         if skeleton.shape[0] < self.sequence_length:
             pad = np.repeat(skeleton[-1:], self.sequence_length - skeleton.shape[0], axis=0)
             skeleton = np.concatenate([skeleton, pad], axis=0)

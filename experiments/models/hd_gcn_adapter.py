@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 import torch
 from torch import nn
 
@@ -29,7 +30,7 @@ class HDGCNClassifier(nn.Module):
         return logits
 
 
-def build_hd_gcn(num_joints: int, hidden_dim: int, num_classes: int, dropout: float, checkpoint: Path | None = None) -> HDGCNClassifier:
+def build_hd_gcn(num_joints: int, hidden_dim: int, num_classes: int, dropout: float, checkpoint: Optional[Path] = None) -> HDGCNClassifier:
     model = HDGCNClassifier(num_joints=num_joints, hidden_dim=hidden_dim, num_classes=num_classes, dropout=dropout)
     if checkpoint is not None and checkpoint.exists():
         state = torch.load(checkpoint, map_location="cpu")
