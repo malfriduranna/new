@@ -1,0 +1,12 @@
+pass
+shot
+dribble
+volley
+run
+jump
+tackle
+celebrate
+fall
+recover
+slide
+goalkeeper_save

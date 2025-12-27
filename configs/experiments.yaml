@@ -1,0 +1,51 @@
+base:
+  seed: 42
+  output_root: outputs
+  label_names_path: configs/label_names.txt
+  dataset:
+    train_manifest: data/manifests/train.csv
+    val_manifest: data/manifests/val.csv
+    test_manifest: data/manifests/test.csv
+    video_root: data/videos
+    skeleton_root: data/skeletons
+  hd_gcn:
+    num_joints: 17
+    num_classes: 12
+    sequence_length: 48
+    hidden_dim: 256
+    dropout: 0.2
+  videomae:
+    num_frames: 16
+    image_size: 224
+    num_classes: 12
+    patch_size: 16
+  schedule:
+    epochs: 80
+    batch_size: 4
+    lr: 0.001
+    weight_decay: 0.05
+subsets:
+  - percentage: 10
+    manifest_path: data/manifests/train_10.csv
+  - percentage: 25
+    manifest_path: data/manifests/train_25.csv
+  - percentage: 50
+    manifest_path: data/manifests/train_50.csv
+fusion:
+  alphas: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+semantic_groups:
+  ball_interaction:
+    - pass
+    - shot
+    - dribble
+    - volley
+  body_motion:
+    - run
+    - jump
+    - tackle
+    - celebrate
+    - fall
+robustness_noise:
+  sigmas: [0.0, 0.01, 0.05, 0.1]
+robustness_resolution:
+  resolutions: [224, 112, 56]
