@@ -21,6 +21,7 @@ VENV="$REPO/.venv"
 CONFIG="$REPO/configs/experiments.yaml"
 PY="$VENV/bin/python"
 PIP="$VENV/bin/pip"
+DEPS_SENTINEL="$VENV/.deps_installed"
 mkdir -p "$REPO/logs"
 LOG_ID=${LSB_JOBID:-manual}
 RUN_LOG="$REPO/logs/${LOG_ID}_run.log"
@@ -38,10 +39,16 @@ if [ ! -x "$PY" ]; then
   python3 -m venv "$VENV"
 fi
 
-echo "[env] activating venv and installing deps"
+echo "[env] activating venv"
 source "$VENV/bin/activate"
-$PIP install --upgrade pip
-$PIP install -r requirements.txt
+if [ ! -f "$DEPS_SENTINEL" ]; then
+  echo "[env] installing deps"
+  $PIP install --upgrade pip
+  $PIP install -r requirements.txt
+  touch "$DEPS_SENTINEL"
+else
+  echo "[env] deps already installed, skipping pip install"
+fi
 
 echo "[run] Exp 1 - modality comparison"
 $PY -m experiments.exp1_modality --config "$CONFIG"
