@@ -63,6 +63,9 @@ def run_hd_gcn(config: ExperimentConfig, device: torch.device, loaders):
 
 
 def run_videomae(config: ExperimentConfig, device: torch.device, loaders):
+    if not config.videomae.enabled:
+        print("VideoMAE stage is disabled in config; skipping.")
+        return None, None, None
     _, _, _, train_rgb, val_rgb, test_rgb = loaders
     model = build_videomae(
         model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),

@@ -47,6 +47,7 @@ class VideoMAEConfig:
     patch_size: int = 16
     checkpoint: ModelCheckpoint = field(default_factory=ModelCheckpoint)
     lr: float = 3e-4
+    enabled: bool = True
 
 
 @dataclass

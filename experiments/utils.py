@@ -56,6 +56,7 @@ def _videomae_config(data: Dict[str, Any]) -> VideoMAEConfig:
         image_size=int(data["image_size"]),
         num_classes=int(data["num_classes"]),
         patch_size=int(data.get("patch_size", 16)),
+        enabled=bool(data.get("enabled", True)),
     )
 
 
