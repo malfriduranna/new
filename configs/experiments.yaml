@@ -19,6 +19,7 @@ base:
     image_size: 224
     num_classes: 4
     patch_size: 16
+    enabled: false
   schedule:
     epochs: 80
     batch_size: 4
