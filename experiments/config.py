@@ -48,6 +48,8 @@ class VideoMAEConfig:
     checkpoint: ModelCheckpoint = field(default_factory=ModelCheckpoint)
     lr: float = 3e-4
     enabled: bool = True
+    model_name_or_path: str = "MCG-NJU/videomae-base"
+    eval_only: bool = False
 
 
 @dataclass
