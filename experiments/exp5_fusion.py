@@ -47,9 +47,10 @@ def main(config_path: Path) -> None:
     vid_model = None
     if config.videomae.enabled:
         vid_model = build_videomae(
-            model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
+            model_name_or_path=config.videomae.model_name_or_path,
             num_classes=config.videomae.num_classes,
             checkpoint=vid_ckpt if vid_ckpt.exists() else config.videomae.checkpoint.init_weights,
+            eval_only=config.videomae.eval_only,
         )
 
     skel_preds, skel_labels, skel_logits = inference(hd_model.to(device), test_skel, device)

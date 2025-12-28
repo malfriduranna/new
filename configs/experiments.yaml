@@ -19,7 +19,9 @@ base:
     image_size: 224
     num_classes: 4
     patch_size: 16
-    enabled: false
+    enabled: true
+    model_name_or_path: anirudhmu/videomae-base-finetuned-soccer-action-recognition3
+    eval_only: true
   schedule:
     epochs: 80
     batch_size: 4
