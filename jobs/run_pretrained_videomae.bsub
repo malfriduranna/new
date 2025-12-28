@@ -19,6 +19,7 @@ unset PYTHONPATH || true
 REPO="$HOME/new"
 VENV="${VENV_PATH:-$REPO/.venv}"
 CONFIG="$REPO/configs/experiments.yaml"
+export CONFIG
 PY="$VENV/bin/python"
 DEPS_SENTINEL="$VENV/.deps_installed"
 OUTPUT_ROOT="${OUTPUT_ROOT:-$REPO/outputs}"
