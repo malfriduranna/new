@@ -23,6 +23,17 @@ This repository provides runnable scripts to reproduce the experiments described
 
 4. **Run experiments** (examples assume the default config path):
 
+   **Use the pretrained SoccerNet VideoMAE checkpoint (no training):**
+
+   - Ensure `configs/experiments.yaml` has `videomae.enabled: true`, `videomae.model_name_or_path: anirudhmu/videomae-base-finetuned-soccer-action-recognition3`, and `videomae.eval_only: true` (these are now the defaults).
+   - Prepare manifests as usual, then launch any experiment; the RGB branch will skip fine-tuning and evaluate directly using the pretrained weights. Example:
+
+     ```bash
+     python -m experiments.exp1_modality --config configs/experiments.yaml
+     ```
+
+   **Train or fine-tune locally instead:** set `videomae.eval_only: false` (optionally point `videomae.model_name_or_path` to a different starting checkpoint) and rerun the experiments below.
+
    - Exp 1 (modality comparison):
 
      ```bash

@@ -70,26 +70,29 @@ def train_models_for_subset(
     if not config.videomae.enabled:
         return hd_metrics.accuracy, None
     vid_model = build_videomae(
-        model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
+        model_name_or_path=config.videomae.model_name_or_path,
         num_classes=config.videomae.num_classes,
         checkpoint=config.videomae.checkpoint.init_weights,
+        eval_only=config.videomae.eval_only,
     )
-    vid_best = run_training(
-        model=vid_model,
-        train_loader=train_rgb,
-        val_loader=val_rgb,
-        epochs=max(1, config.schedule.epochs // 2),
-        lr=config.videomae.lr,
-        weight_decay=config.schedule.weight_decay,
-        device=device,
-        checkpoint_dir=config.output.checkpoints_dir,
-        best_name=f"videomae_subset_{suffix}.pt",
-    )
-    vid_model = build_videomae(
-        model_name_or_path=str(config.videomae.checkpoint.init_weights or "MCG-NJU/videomae-base"),
-        num_classes=config.videomae.num_classes,
-        checkpoint=vid_best,
-    )
+    vid_best = None
+    if not config.videomae.eval_only:
+        vid_best = run_training(
+            model=vid_model,
+            train_loader=train_rgb,
+            val_loader=val_rgb,
+            epochs=max(1, config.schedule.epochs // 2),
+            lr=config.videomae.lr,
+            weight_decay=config.schedule.weight_decay,
+            device=device,
+            checkpoint_dir=config.output.checkpoints_dir,
+            best_name=f"videomae_subset_{suffix}.pt",
+        )
+        vid_model = build_videomae(
+            model_name_or_path=config.videomae.model_name_or_path,
+            num_classes=config.videomae.num_classes,
+            checkpoint=vid_best,
+        )
     vid_loss = nn.CrossEntropyLoss()
     _, vid_metrics = evaluate(vid_model.to(device), test_rgb, vid_loss, device)
 
