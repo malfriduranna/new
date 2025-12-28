@@ -18,7 +18,7 @@ unset PYTHONPATH || true
 
 REPO="$HOME/new"
 VENV="${VENV_PATH:-$REPO/.venv}"
-CONFIG="${CONFIG:-$REPO/configs/experiments.yaml}"
+CONFIG="$REPO/configs/experiments.yaml"
 export CONFIG
 PY="$VENV/bin/python"
 DEPS_SENTINEL="$VENV/.deps_installed"
@@ -36,7 +36,6 @@ cd "$REPO"
 echo "=== START $(date) on $(hostname) ==="
 echo "[env] repo: $(pwd)"
 echo "[env] venv: $VENV"
-echo "[env] config: $CONFIG"
 
 if [ ! -x "$PY" ]; then
   echo "[env] creating venv"
@@ -48,32 +47,6 @@ source "$VENV/bin/activate"
 if [ ! -f "$DEPS_SENTINEL" ]; then
   echo "[env] ERROR: dependencies not installed. Run scripts/setup_cluster_env.sh on a login node first."
   exit 1
-fi
-
-if [ "${CREATE_MINIMAL_MANIFESTS:-false}" = "true" ]; then
-  echo "[prep] Generating minimal manifests and dummy data"
-  eval "$(python - <<'PY'
-import os
-import yaml
-from pathlib import Path
-
-cfg = yaml.safe_load(Path(os.environ["CONFIG"]).read_text())
-ds = cfg["base"]["dataset"]
-train_manifest = Path(ds["train_manifest"])
-video_root = Path(ds["video_root"])
-skeleton_root = Path(ds["skeleton_root"])
-output_dir = train_manifest.parent
-video_path = video_root / "dummy.mp4"
-skeleton_path = skeleton_root / "dummy.npy"
-print(f"OUTPUT_DIR={output_dir}")
-print(f"VIDEO_PATH={video_path}")
-print(f"SKELETON_PATH={skeleton_path}")
-PY
-  )"
-  $PY scripts/create_minimal_manifests.py \
-    --output-dir "$OUTPUT_DIR" \
-    --video-path "$VIDEO_PATH" \
-    --skeleton-path "$SKELETON_PATH"
 fi
 
 echo "[info] VideoMAE settings:"
