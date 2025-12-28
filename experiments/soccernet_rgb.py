@@ -43,7 +43,7 @@ class SoccerNetRGBDataset(Dataset[Tuple[torch.Tensor, int]]):
             if not class_dir.exists():
                 continue
             for ext in _default_extensions():
-                for path in sorted(class_dir.glob(f"*{ext}")):
+                for path in sorted(class_dir.rglob(f"*{ext}")):
                     self.samples.append((path, self.class_to_idx[cls]))
 
         if not self.samples:
@@ -111,7 +111,7 @@ def build_videomae_model(class_names: Sequence[str], device: torch.device) -> Vi
     id2label = {idx: name for idx, name in enumerate(class_names)}
     label2id = {name: idx for idx, name in id2label.items()}
     model = VideoMAEForVideoClassification.from_pretrained(
-        "MCG-NJU/videomae-base-finetuned-kinetics",
+        "anirudhmu/videomae-base-finetuned-soccer-action-recognition3",
         num_labels=len(class_names),
         label2id=label2id,
         id2label=id2label,
