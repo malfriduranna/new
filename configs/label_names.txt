@@ -1,4 +1,11 @@
-kick
-throw_in
-pass
-header
+Card
+Celebration
+Corner
+Direct free-kick
+Goals
+Kick-off
+Offside
+Open-Play
+Penalty
+Substitution
+transition

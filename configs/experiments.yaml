@@ -17,7 +17,7 @@ base:
   videomae:
     num_frames: 16
     image_size: 224
-    num_classes: 4
+    num_classes: 11
     patch_size: 16
     enabled: true
     model_name_or_path: anirudhmu/videomae-base-finetuned-soccer-action-recognition3
