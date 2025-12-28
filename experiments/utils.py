@@ -66,6 +66,8 @@ def _videomae_config(data: Dict[str, Any]) -> VideoMAEConfig:
         num_classes=int(data["num_classes"]),
         patch_size=int(data.get("patch_size", 16)),
         enabled=bool(data.get("enabled", True)),
+        model_name_or_path=str(data.get("model_name_or_path", "MCG-NJU/videomae-base")),
+        eval_only=bool(data.get("eval_only", False)),
     )
 
 
