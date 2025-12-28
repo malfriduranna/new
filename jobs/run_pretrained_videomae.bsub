@@ -50,9 +50,11 @@ fi
 
 echo "[info] VideoMAE settings:"
 python - <<'PY'
+import os
 import yaml
 from pathlib import Path
-config = yaml.safe_load(Path("$CONFIG").read_text())
+config_path = Path(os.environ["CONFIG"])
+config = yaml.safe_load(config_path.read_text())
 vm = config["base"]["videomae"]
 print(f"  model_name_or_path: {vm.get('model_name_or_path', 'MCG-NJU/videomae-base')}")
 print(f"  eval_only: {vm.get('eval_only', False)}")
