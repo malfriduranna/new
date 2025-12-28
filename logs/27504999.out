@@ -1,0 +1,518 @@
+=== START Sun Dec 28 14:27:38 CET 2025 on n-62-13-14 ===
+[env] repo: /zhome/2e/8/208721/new
+[env] venv: /zhome/2e/8/208721/new/.venv
+[env] activating venv
+[info] VideoMAE settings:
+  model_name_or_path: anirudhmu/videomae-base-finetuned-soccer-action-recognition3
+  eval_only: True
+[run] Exp 1 - modality comparison (VideoMAE eval-only)
+/zhome/2e/8/208721/new/experiments/engine.py:94: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 1: train_loss=1.4225 val_acc=0.2804 macro_f1=0.1658
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 2: train_loss=1.3753 val_acc=0.2991 macro_f1=0.1746
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 3: train_loss=1.3981 val_acc=0.3084 macro_f1=0.2374
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 4: train_loss=1.3506 val_acc=0.3832 macro_f1=0.3007
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 5: train_loss=1.3860 val_acc=0.2991 macro_f1=0.1507
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 6: train_loss=1.3919 val_acc=0.3645 macro_f1=0.2249
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 7: train_loss=1.3629 val_acc=0.3738 macro_f1=0.2123
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 8: train_loss=1.3418 val_acc=0.3551 macro_f1=0.2763
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 9: train_loss=1.3236 val_acc=0.3551 macro_f1=0.1910
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 10: train_loss=1.3424 val_acc=0.3271 macro_f1=0.1691
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 11: train_loss=1.3573 val_acc=0.3645 macro_f1=0.2840
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 12: train_loss=1.3620 val_acc=0.3458 macro_f1=0.2616
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 13: train_loss=1.3261 val_acc=0.3645 macro_f1=0.2345
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 14: train_loss=1.3502 val_acc=0.2991 macro_f1=0.1507
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 15: train_loss=1.3282 val_acc=0.3738 macro_f1=0.3065
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 16: train_loss=1.3517 val_acc=0.3458 macro_f1=0.2784
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 17: train_loss=1.3137 val_acc=0.3271 macro_f1=0.1682
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 18: train_loss=1.3246 val_acc=0.3645 macro_f1=0.2029
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 19: train_loss=1.3190 val_acc=0.3551 macro_f1=0.2463
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 20: train_loss=1.3391 val_acc=0.2991 macro_f1=0.1507
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 21: train_loss=1.3471 val_acc=0.3645 macro_f1=0.2772
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 22: train_loss=1.3382 val_acc=0.3458 macro_f1=0.2571
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 23: train_loss=1.2967 val_acc=0.3178 macro_f1=0.1954
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 24: train_loss=1.3232 val_acc=0.3551 macro_f1=0.2655
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 25: train_loss=1.3054 val_acc=0.3084 macro_f1=0.1633
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 26: train_loss=1.3225 val_acc=0.3645 macro_f1=0.2355
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 27: train_loss=1.3420 val_acc=0.3178 macro_f1=0.2630
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 28: train_loss=1.3157 val_acc=0.3271 macro_f1=0.2772
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 29: train_loss=1.3322 val_acc=0.3832 macro_f1=0.2487
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 30: train_loss=1.2954 val_acc=0.3364 macro_f1=0.2513
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 31: train_loss=1.3055 val_acc=0.3551 macro_f1=0.2277
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 32: train_loss=1.3004 val_acc=0.3084 macro_f1=0.1633
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 33: train_loss=1.3082 val_acc=0.3364 macro_f1=0.2783
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 34: train_loss=1.2855 val_acc=0.3551 macro_f1=0.2590
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 35: train_loss=1.3013 val_acc=0.3084 macro_f1=0.1633
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 36: train_loss=1.2994 val_acc=0.3084 macro_f1=0.1633
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 37: train_loss=1.3124 val_acc=0.3364 macro_f1=0.2508
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 38: train_loss=1.2700 val_acc=0.3271 macro_f1=0.2036
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 39: train_loss=1.2817 val_acc=0.3925 macro_f1=0.3115
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 40: train_loss=1.3197 val_acc=0.3645 macro_f1=0.2914
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 41: train_loss=1.2789 val_acc=0.3458 macro_f1=0.2248
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 42: train_loss=1.2778 val_acc=0.4019 macro_f1=0.3133
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 43: train_loss=1.2910 val_acc=0.3084 macro_f1=0.1628
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 44: train_loss=1.2850 val_acc=0.3458 macro_f1=0.2193
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 45: train_loss=1.3000 val_acc=0.3832 macro_f1=0.2843
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 46: train_loss=1.2655 val_acc=0.3925 macro_f1=0.2619
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 47: train_loss=1.2892 val_acc=0.3271 macro_f1=0.1947
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 48: train_loss=1.3283 val_acc=0.3551 macro_f1=0.2883
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 49: train_loss=1.3786 val_acc=0.3458 macro_f1=0.1872
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 50: train_loss=1.3810 val_acc=0.3738 macro_f1=0.2200
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 51: train_loss=1.3371 val_acc=0.3645 macro_f1=0.2645
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 52: train_loss=1.3463 val_acc=0.3738 macro_f1=0.2310
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 53: train_loss=1.3272 val_acc=0.3084 macro_f1=0.1633
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 54: train_loss=1.3089 val_acc=0.3084 macro_f1=0.1628
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 55: train_loss=1.3090 val_acc=0.2430 macro_f1=0.2226
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 56: train_loss=1.3615 val_acc=0.3084 macro_f1=0.1633
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 57: train_loss=1.3242 val_acc=0.3084 macro_f1=0.1628
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 58: train_loss=1.3300 val_acc=0.3084 macro_f1=0.1628
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 59: train_loss=1.3322 val_acc=0.3551 macro_f1=0.2604
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 60: train_loss=1.3568 val_acc=0.3551 macro_f1=0.2604
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 61: train_loss=1.3215 val_acc=0.3551 macro_f1=0.2619
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 62: train_loss=1.3278 val_acc=0.3551 macro_f1=0.2604
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 63: train_loss=1.3143 val_acc=0.2430 macro_f1=0.2186
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 64: train_loss=1.3724 val_acc=0.3645 macro_f1=0.2093
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 65: train_loss=1.3426 val_acc=0.2991 macro_f1=0.1594
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 66: train_loss=1.3095 val_acc=0.3458 macro_f1=0.2437
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 67: train_loss=1.3362 val_acc=0.3738 macro_f1=0.2309
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 68: train_loss=1.3425 val_acc=0.2991 macro_f1=0.1585
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 69: train_loss=1.3588 val_acc=0.2991 macro_f1=0.1786
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 70: train_loss=1.3725 val_acc=0.2617 macro_f1=0.1162
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 71: train_loss=1.3439 val_acc=0.2804 macro_f1=0.1532
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 72: train_loss=1.3365 val_acc=0.3271 macro_f1=0.2313
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 73: train_loss=1.3020 val_acc=0.3551 macro_f1=0.2010
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 74: train_loss=1.3223 val_acc=0.2991 macro_f1=0.1590
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 75: train_loss=1.3421 val_acc=0.2897 macro_f1=0.1568
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 76: train_loss=1.3085 val_acc=0.3551 macro_f1=0.2212
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 77: train_loss=1.3298 val_acc=0.2710 macro_f1=0.1505
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 78: train_loss=1.3286 val_acc=0.3271 macro_f1=0.1647
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 79: train_loss=1.3431 val_acc=0.2804 macro_f1=0.1644
+/zhome/2e/8/208721/new/experiments/engine.py:33: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Epoch 80: train_loss=1.3146 val_acc=0.3271 macro_f1=0.2266
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Some weights of VideoMAEForVideoClassification were not initialized from the model checkpoint at anirudhmu/videomae-base-finetuned-soccer-action-recognition3 and are newly initialized because the shapes did not match:
+- classifier.bias: found shape torch.Size([11]) in the checkpoint and torch.Size([4]) in the model instantiated
+- classifier.weight: found shape torch.Size([11, 768]) in the checkpoint and torch.Size([4, 768]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/zhome/2e/8/208721/new/experiments/datasets.py:105: UserWarning: Video data/videos/dummy.mp4 produced 0 frames; substituting blank clip.
+  warnings.warn(f"Video {entry.video_path} produced 0 frames; substituting blank clip.")
+/zhome/2e/8/208721/new/experiments/datasets.py:105: UserWarning: Video data/videos/dummy.mp4 produced 0 frames; substituting blank clip.
+  warnings.warn(f"Video {entry.video_path} produced 0 frames; substituting blank clip.")
+/zhome/2e/8/208721/new/experiments/engine.py:59: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=amp):
+Exp 1 complete. Metrics saved to /zhome/2e/8/208721/new/outputs/logs/exp1_metrics.json
+=== END Sun Dec 28 14:29:20 CET 2025 ===
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 27504999: <action-exp-pretrained> in cluster <dcc> Done
+
+Job <action-exp-pretrained> was submitted from host <hpclogin1> by user <s240116> in cluster <dcc> at Sun Dec 28 14:27:35 2025
+Job was executed on host(s) <4*n-62-13-14>, in queue <gpul40s>, as user <s240116> in cluster <dcc> at Sun Dec 28 14:27:36 2025
+</zhome/2e/8/208721> was used as the home directory.
+</zhome/2e/8/208721/new> was used as the working directory.
+Started at Sun Dec 28 14:27:36 2025
+Terminated at Sun Dec 28 14:29:20 2025
+Results reported at Sun Dec 28 14:29:20 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J action-exp-pretrained
+#BSUB -q gpul40s
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -W 04:00
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=8GB]"
+#BSUB -M 8GB
+#BSUB -o logs/%J.out
+#BSUB -e logs/%J.err
+
+set -euo pipefail
+
+module purge
+unset PYTHONHOME || true
+unset PYTHONPATH || true
+
+REPO="$HOME/new"
+VENV="${VENV_PATH:-$REPO/.venv}"
+CONFIG="$REPO/configs/experiments.yaml"
+export CONFIG
+PY="$VENV/bin/python"
+DEPS_SENTINEL="$VENV/.deps_installed"
+OUTPUT_ROOT="${OUTPUT_ROOT:-$REPO/outputs}"
+export ACTION_EXP_OUTPUT_ROOT="$OUTPUT_ROOT"
+mkdir -p "$REPO/logs"
+mkdir -p "$OUTPUT_ROOT"
+LOG_ID=${LSB_JOBID:-manual}
+RUN_LOG="$REPO/logs/${LOG_ID}_run.log"
+touch "$RUN_LOG"
+exec > >(tee -a "$RUN_LOG") 2>&1
+
+cd "$REPO"
+
+echo "=== START $(date) on $(hostname) ==="
+echo "[env] repo: $(pwd)"
+echo "[env] venv: $VENV"
+
+if [ ! -x "$PY" ]; then
+  echo "[env] creating venv"
+  python3 -m venv "$VENV"
+fi
+
+echo "[env] activating venv"
+source "$VENV/bin/activate"
+if [ ! -f "$DEPS_SENTINEL" ]; then
+  echo "[env] ERROR: dependencies not installed. Run scripts/setup_cluster_env.sh on a login node first."
+  exit 1
+fi
+
+(... more ...)
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   201.00 sec.
+    Max Memory :                                 1132 MB
+    Average Memory :                             1009.33 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31636.00 MB
+    Max Swap :                                   -
+    Max Processes :                              8
+    Max Threads :                                21
+    Run time :                                   198 sec.
+    Turnaround time :                            105 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/27504999.err> for stderr output of this job.
+
