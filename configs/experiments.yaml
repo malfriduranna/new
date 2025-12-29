@@ -17,11 +17,12 @@ base:
   videomae:
     num_frames: 16
     image_size: 224
-    num_classes: 11
+    num_classes: 4
     patch_size: 16
     enabled: true
     model_name_or_path: anirudhmu/videomae-base-finetuned-soccer-action-recognition3
-    eval_only: true
+    eval_only: false
+    lr: 0.0003
   schedule:
     epochs: 80
     batch_size: 4
