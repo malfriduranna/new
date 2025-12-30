@@ -36,6 +36,7 @@ class HDGCNConfig:
     sequence_length: int
     hidden_dim: int = 256
     dropout: float = 0.2
+    enabled: bool = True
     checkpoint: ModelCheckpoint = field(default_factory=ModelCheckpoint)
 
 

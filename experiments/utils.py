@@ -56,6 +56,7 @@ def _hdgcn_config(data: Dict[str, Any]) -> HDGCNConfig:
         sequence_length=int(data["sequence_length"]),
         hidden_dim=int(data.get("hidden_dim", 256)),
         dropout=float(data.get("dropout", 0.2)),
+        enabled=bool(data.get("enabled", True)),
     )
 
 

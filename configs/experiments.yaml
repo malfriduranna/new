@@ -9,6 +9,7 @@ base:
     video_root: data/videos
     skeleton_root: data/skeletons
   hd_gcn:
+    enabled: true
     num_joints: 17
     num_classes: 4
     sequence_length: 64

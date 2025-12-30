@@ -31,6 +31,9 @@ def prepare_loaders(config: ExperimentConfig):
 
 
 def run_hd_gcn(config: ExperimentConfig, device: torch.device, loaders):
+    if not config.hd_gcn.enabled:
+        print("HD-GCN stage is disabled in config; skipping.")
+        return None, None, None
     train_skel, val_skel, test_skel, _, _, _ = loaders
     model = build_hd_gcn(
         num_joints=config.hd_gcn.num_joints,
@@ -103,18 +106,20 @@ def main(config_path: Path) -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     loaders = prepare_loaders(config)
-    hd_model, hd_metrics, hd_ckpt = run_hd_gcn(config, device, loaders)
+    hd_model = hd_metrics = hd_ckpt = None
+    if config.hd_gcn.enabled:
+        hd_model, hd_metrics, hd_ckpt = run_hd_gcn(config, device, loaders)
     vid_model, vid_metrics, vid_ckpt = run_videomae(config, device, loaders)
 
     # Save metrics
     metrics_path = config.output.logs_dir / "exp1_metrics.json"
-    metrics_payload = {
-        "hd_gcn": {
+    metrics_payload = {}
+    if hd_metrics is not None:
+        metrics_payload["hd_gcn"] = {
             "accuracy": hd_metrics.accuracy,
             "macro_f1": hd_metrics.macro_f1,
             "checkpoint": str(hd_ckpt),
         }
-    }
     if vid_metrics is not None:
         metrics_payload["videomae"] = {
             "accuracy": vid_metrics.accuracy,
@@ -127,8 +132,9 @@ def main(config_path: Path) -> None:
     # Not storing class names in config, so use indices
     class_names = [f"class_{i}" for i in range(config.hd_gcn.num_classes)]
 
-    hd_confusion_plot = config.output.plots_dir / "exp1_hd_gcn_confusion.png"
-    plot_confusion(class_names=class_names, confusion=hd_metrics.confusion, title="HD-GCN Confusion", output_path=hd_confusion_plot)
+    if hd_metrics is not None:
+        hd_confusion_plot = config.output.plots_dir / "exp1_hd_gcn_confusion.png"
+        plot_confusion(class_names=class_names, confusion=hd_metrics.confusion, title="HD-GCN Confusion", output_path=hd_confusion_plot)
     if vid_metrics is not None:
         vid_confusion_plot = config.output.plots_dir / "exp1_videomae_confusion.png"
         plot_confusion(class_names=class_names, confusion=vid_metrics.confusion, title="VideoMAE Confusion", output_path=vid_confusion_plot)
