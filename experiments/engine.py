@@ -1,12 +1,19 @@
 from pathlib import Path
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, Iterable, List, Optional, Tuple
 
 import torch
 from torch import nn, optim
 from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data import DataLoader
+from tqdm.auto import tqdm
 
 from .metrics import MetricsResult, classification_metrics, gather_predictions
+
+
+def _progress(iterator: Iterable, desc: Optional[str]) -> Iterable:
+    if desc:
+        return tqdm(iterator, desc=desc, leave=False, ncols=80)
+    return iterator
 
 
 def setup_optimizer(model: nn.Module, lr: float, weight_decay: float) -> optim.Optimizer:
@@ -23,10 +30,12 @@ def train_one_epoch(
     scaler: GradScaler,
     *,
     amp: bool = True,
+    progress_desc: Optional[str] = None,
 ) -> float:
     model.train()
     running_loss = 0.0
-    for inputs, labels in dataloader:
+    batches = max(len(dataloader), 1)
+    for inputs, labels in _progress(dataloader, progress_desc):
         inputs = inputs.to(device)
         labels = labels.to(device)
         optimizer.zero_grad(set_to_none=True)
@@ -37,7 +46,7 @@ def train_one_epoch(
         scaler.step(optimizer)
         scaler.update()
         running_loss += float(loss.detach())
-    return running_loss / max(len(dataloader), 1)
+    return running_loss / batches
 
 
 def evaluate(
@@ -47,13 +56,15 @@ def evaluate(
     device: torch.device,
     *,
     amp: bool = True,
+    progress_desc: Optional[str] = None,
 ) -> Tuple[float, MetricsResult]:
     model.eval()
     losses: List[float] = []
     preds: List[int] = []
     labels_all: List[int] = []
+    batches = max(len(dataloader), 1)
     with torch.no_grad():
-        for inputs, labels in dataloader:
+        for inputs, labels in _progress(dataloader, progress_desc):
             inputs = inputs.to(device)
             labels = labels.to(device)
             with autocast(enabled=amp):
@@ -64,7 +75,7 @@ def evaluate(
             preds.extend(batch_preds)
             labels_all.extend(batch_labels)
     metrics = classification_metrics(preds, labels_all)
-    return sum(losses) / max(len(losses), 1), metrics
+    return sum(losses) / batches, metrics
 
 
 def save_checkpoint(model: nn.Module, path: Path) -> None:
@@ -97,8 +108,10 @@ def run_training(
     best_acc = 0.0
     best_path = checkpoint_dir / best_name
     for epoch in range(1, epochs + 1):
-        train_loss = train_one_epoch(model, train_loader, optimizer, loss_fn, device, scaler)
-        _, val_metrics = evaluate(model, val_loader, loss_fn, device)
+        train_desc = f"Train {epoch}/{epochs}"
+        val_desc = f"Val {epoch}/{epochs}"
+        train_loss = train_one_epoch(model, train_loader, optimizer, loss_fn, device, scaler, progress_desc=train_desc)
+        _, val_metrics = evaluate(model, val_loader, loss_fn, device, progress_desc=val_desc)
         if val_metrics.accuracy > best_acc:
             best_acc = val_metrics.accuracy
             save_checkpoint(model, best_path)
